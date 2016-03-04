@@ -31,11 +31,14 @@ namespace RoundedBoxView.Forms.Plugin.Win10
         {
             base.OnElementChanged(e);
 
-            var border = new Border();
-            border.InitializeFrom(_formControl);
-            SetNativeControl(border);
+            if (Control == null && _formControl != null)
+            {
+                var border = new Border();
+                border.InitializeFrom(_formControl);
+                SetNativeControl(border);
 
-            ClearBackgroundColor();
+                ClearBackgroundColor();
+            }
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
