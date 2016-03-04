@@ -26,5 +26,6 @@
         <file src="RoundedBoxView.Forms.Plugin.WindowsPhone\bin\Release\RoundedBoxView.Forms.Plugin.WindowsPhone.dll" target="lib\wp8\RoundedBoxView.Forms.Plugin.WindowsPhone.dll" />
         <file src="RoundedBoxView.Forms.Plugin.Abstractions\bin\Release\RoundedBoxView.Forms.Plugin.Abstractions.dll" target="lib\Xamarin.iOS10\RoundedBoxView.Forms.Plugin.Abstractions.dll" />
         <file src="RoundedBoxView.Forms.Plugin.iOSUnified\bin\iPhone\Release\RoundedBoxView.Forms.Plugin.iOSUnified.dll" target="lib\Xamarin.iOS10\RoundedBoxView.Forms.Plugin.iOSUnified.dll" />
+        <file src="RoundedBoxView.Forms.Plugin.Win10\bin\Release\RoundedBoxView.Forms.Plugin.Win10.dll" target="lib\uap\RoundedBoxView.Forms.Plugin.Win10.dll" />
     </files>
 </package>
