@@ -12,8 +12,14 @@ namespace RoundedBoxView.Forms.Plugin.WindowsPhone.ExtensionMethods
       if (nativeControl == null || formsControl == null)
         return;
 
-      nativeControl.Height = formsControl.HeightRequest;
-      nativeControl.Width = formsControl.WidthRequest;
+      if (formsControl.HeightRequest >= 0)
+      {
+          nativeControl.Height = formsControl.HeightRequest;
+      }
+      if (formsControl.WidthRequest >= 0)
+      {
+          nativeControl.Width = formsControl.WidthRequest;
+      }
       nativeControl.UpdateCornerRadius(formsControl.CornerRadius);
       nativeControl.UpdateBorderColor(formsControl.BorderColor);
       
@@ -30,6 +36,28 @@ namespace RoundedBoxView.Forms.Plugin.WindowsPhone.ExtensionMethods
       if (nativeControl == null || formsControl == null)
         return;
 
+      if (propertyChanged == VisualElement.HeightRequestProperty.PropertyName)
+      {
+          nativeControl.Height = formsControl.HeightRequest;
+
+          var rect = nativeControl.Child as Rectangle;
+
+          if (rect != null)
+          { 
+              rect.UpdateControlHeight(formsControl.HeightRequest);
+          }
+      }
+      if (propertyChanged == VisualElement.WidthRequestProperty.PropertyName)
+      {
+          nativeControl.Width = formsControl.WidthRequest;
+
+          var rect = nativeControl.Child as Rectangle;
+
+          if (rect != null)
+          {
+              rect.UpdateControlWidth(formsControl.WidthRequest);
+          }
+      }
       if (propertyChanged == Abstractions.RoundedBoxView.CornerRadiusProperty.PropertyName)
       {
         nativeControl.UpdateCornerRadius(formsControl.CornerRadius);

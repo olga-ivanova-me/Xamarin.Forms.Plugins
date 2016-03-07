@@ -28,6 +28,16 @@ namespace RoundedBoxView.Forms.Plugin.WindowsPhone.ExtensionMethods
       nativeControl.Fill = backgroundColor.ToBrush();
     }
 
+    public static void UpdateControlHeight(this Rectangle nativeControl, double formsControlHeightRequest)
+    {
+        nativeControl.Height = formsControlHeightRequest;
+    }
+
+    public static void UpdateControlWidth(this Rectangle nativeControl, double formsControlWidthRequest)
+    {
+        nativeControl.Width = formsControlWidthRequest;
+    }
+
     /// <summary>
     /// Changes the border size by changing the height and width of the rectangle
     /// </summary>
@@ -37,13 +47,16 @@ namespace RoundedBoxView.Forms.Plugin.WindowsPhone.ExtensionMethods
     /// <param name="formsControlWidthRequest"></param>
     public static void UpdateBorderThickness(this Rectangle nativeControl, int borderThickness, double formsControlHeightRequest, double formsControlWidthRequest)
     {
-      var relativeBorderThickness = borderThickness * 1.7;
+        if (formsControlHeightRequest >= 0 && formsControlWidthRequest >= 0)
+        {
+            var relativeBorderThickness = borderThickness*1.7;
 
-      var rectHeight = formsControlHeightRequest - relativeBorderThickness;
-      var rectWidth = formsControlWidthRequest - relativeBorderThickness;
+            var rectHeight = formsControlHeightRequest - relativeBorderThickness;
+            var rectWidth = formsControlWidthRequest - relativeBorderThickness;
 
-      nativeControl.Height = rectHeight;
-      nativeControl.Width = rectWidth;
+            nativeControl.Height = rectHeight;
+            nativeControl.Width = rectWidth;
+        }
     }
   }
 }

@@ -6,6 +6,7 @@ using RoundedBoxView.Forms.Plugin.WindowsPhone;
 using RoundedBoxView.Forms.Plugin.WindowsPhone.ExtensionMethods;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.WinPhone;
+using Color = Xamarin.Forms.Color;
 using Rectangle = System.Windows.Shapes.Rectangle;
 
 [assembly:
@@ -34,11 +35,14 @@ namespace RoundedBoxView.Forms.Plugin.WindowsPhone
     {
       base.OnElementChanged(e);
 
-      var border = new Border();
+        if (Control == null && _formControl != null)
+        {
+            var border = new Border();
+            border.InitializeFrom(_formControl);
+            SetNativeControl(border);
 
-      border.InitializeFrom(_formControl);
-
-      SetNativeControl(border);
+            ClearBackgroundColor();
+        }
     }
 
     protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -46,6 +50,15 @@ namespace RoundedBoxView.Forms.Plugin.WindowsPhone
       base.OnElementPropertyChanged(sender, e);
 
       Control.UpdateFrom(_formControl, e.PropertyName);
+    }
+
+    /// <summary>
+    /// Clears the background color of BoxView that is rendered.
+    /// </summary>
+    /// <remarks> Without clearing background color the corner radius will be invisible.</remarks>
+    private void ClearBackgroundColor()
+    {
+        this.Background = Color.Transparent.ToBrush();
     }
   }
 }
